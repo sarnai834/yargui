@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хоолны цэсийн жагсаалт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .approved-by {
+            font-size: 16px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #2c3e50;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+
+        .header-container h3 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .table-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2980b9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: white;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ecf0f1;
+        }
+
+        tr:hover {
+            background-color: #d6eaf8;
+        }
+
+        .footer {
+            text-align: right;
+            margin-top: 15px;
+            font-weight: bold;
+            padding-right: 20px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <div class="approved-by">Батлав:.........................................................Эрхлэгч <span style="border-bottom: 1px dashed #2c3e50;">А.Мөнхсоёл</span></div>
+    
+    <div class="header-container">
+        <h3>Баянзүрх дүүргийн Яргуй цэцэрлэгийн 2-5 нас</h3>
+    </div>
+
+    <div class="table-container">
+        <h2>5 хоногийн хоолны Цэс</h2>
+        <table id="menu-table">
+            <thead>
+                <tr>
+                    <th>Огноо</th>
+                    <th>Гариг</th>
+                    <th>Өглөө</th>
+                    <th>Бага үд</th>
+                    <th>Өдөр</th>
+                    <th>Илчлэг</th>
+                </tr>
+            </thead>
+            <tbody id="menu-list"></tbody>
+        </table>
+    </div>
+    
+    <p class="footer">Цэс гаргасан:.............................................................<span style="border-bottom: 1px dashed #2c3e50;">Ахлах тогооч Б.Эрдэнэбилэг</span></p>
+    
+    <script>
+        function loadMenuItems() {
+            let menuItems = JSON.parse(localStorage.getItem("menuItems")) || [];
+            let tableBody = document.getElementById("menu-list");
+            tableBody.innerHTML = ""; 
+
+            menuItems.forEach((item) => {
+                let row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.day}</td>
+                    <td>${item.dayOfWeek}</td>
+                    <td>${item.breakfastFood}</td>
+                    <td>${item.snackFood}</td>
+                    <td>${item.lunchFood}</td>
+                    <td>${item.calories}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", loadMenuItems);
+    </script>
+</body>
+</html>
